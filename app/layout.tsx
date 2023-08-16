@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Alegreya } from 'next/font/google';
 import Navbar from './(shared)/Navbar';
+import Footer from './(shared)/Footer';
 
 const alegreya = Alegreya({
   subsets: ['latin']
@@ -22,7 +23,7 @@ export default function RootLayout({
       <body className={alegreya.className}>
         <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   )
