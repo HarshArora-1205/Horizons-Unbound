@@ -3,6 +3,8 @@
 import SocialLinks from '@/app/(shared)/SocialLinks';
 import { FormattedPost } from '@/app/types';
 import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
@@ -18,6 +20,13 @@ const Content = ({post}: Props) => {
 
   const [content, setContent] = useState<string>(post.content);
   const [contentError, setContentError] = useState<string>("");
+
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+    ],
+    content: '<p>Hello World! 🌎️</p>',
+  })
 
   const handleSubmit = () => {
 
@@ -83,6 +92,17 @@ const Content = ({post}: Props) => {
           />
         </div>
 
+        <div className={isEditable ? "border-2 rounded-md bg-wh-50 p-3" : "w-full max-w-full"}>
+          {
+            isEditable && (
+              <>
+
+              </>
+            )
+          }
+          <EditorContent editor={editor} />
+        </div>
+
         {/* SUBMIT BUTTON */}
         {isEditable && (
           <div className="flex justify-end">
@@ -101,7 +121,7 @@ const Content = ({post}: Props) => {
       <div className="hidden md:block mt-10 w-1/3">
         <SocialLinks isDark />
       </div>
-      
+
     </div>
   );
 }
