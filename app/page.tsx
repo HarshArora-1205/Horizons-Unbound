@@ -41,7 +41,7 @@ export default async function Home() {
   
   return (
     <main className="leading-7 px-10">
-      <Trending />
+      <Trending trendingPosts={trendingPosts}/>
       <div className="md:flex gap-10 mb-5">
         <div className="basis-3/4">
           <Tech />
