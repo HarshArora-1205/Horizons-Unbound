@@ -82,6 +82,18 @@ const Content = ({post}: Props) => {
           />
         </div>
 
+        {/* SUBMIT BUTTON */}
+        {isEditable && (
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              className="bg-accent-red hover:bg-wh-500 text-wh-10 font-semibold py-2 px-5 mt-5"
+            >
+              SUBMIT
+            </button>
+          </div>
+        )}
+        
       </form>
     </div>
   );
