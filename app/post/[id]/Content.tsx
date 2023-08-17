@@ -2,6 +2,7 @@
 
 import { FormattedPost } from '@/app/types';
 import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/solid';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 type Props = {
@@ -66,6 +67,20 @@ const Content = ({post}: Props) => {
             <h6 className="text-wh-300 text-xs">{post.createdAt}</h6>
           </div>
         </>
+
+        {/* IMAGE */}
+        <div className="relative w-auto mt-2 mb-16 h-96">
+          <Image
+            fill
+            alt={post.title}
+            src={post.image}
+            sizes="(max-width: 480px) 100vw,
+                  (max-width: 768px) 85vw,
+                  (max-width: 1060px) 75vw,
+                  60vw"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
 
       </form>
     </div>
