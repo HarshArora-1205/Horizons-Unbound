@@ -1,5 +1,6 @@
 "use client";
 
+import SocialLinks from '@/app/(shared)/SocialLinks';
 import { FormattedPost } from '@/app/types';
 import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Image from 'next/image';
@@ -93,8 +94,14 @@ const Content = ({post}: Props) => {
             </button>
           </div>
         )}
-        
+
       </form>
+
+      {/* SOCIAL LINKS */}
+      <div className="hidden md:block mt-10 w-1/3">
+        <SocialLinks isDark />
+      </div>
+      
     </div>
   );
 }
