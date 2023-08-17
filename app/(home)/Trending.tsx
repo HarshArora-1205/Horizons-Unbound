@@ -20,10 +20,10 @@ const TrendingCard = ({ className, post }: TrendingCardProps ) => {
       <div className="absolute z-1 top-0 left-0 w-full h-full bg-gradient-gradual" />
       <div className="absolute z-2 bottom-0 left-0 p-3" >
           <h4 className="inline-block px-5 py-1 font-semibold bg-accent-orange text-wh-900">
-            category
+            {post?.category}
           </h4>
           <div className="text-wh-100 mt-2">
-            title
+            {post?.title}
           </div>
       </div>
     </Link>
