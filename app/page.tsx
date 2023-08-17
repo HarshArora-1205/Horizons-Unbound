@@ -21,8 +21,6 @@ const getPosts = async () => {
   );
 
   return formattedPosts;
-
-  return posts;
 }
 
 export default async function Home() {

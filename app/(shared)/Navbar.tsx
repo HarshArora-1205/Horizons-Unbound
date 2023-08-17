@@ -31,7 +31,7 @@ const Navbar = (props: Props) => {
             Unveiling the Potential of AI through Captivating Insights and Stories.
           </p>
         </div>
-        <div className="basis-full relative w-auto h-32 bg-wh-500">
+        <div className="basis-full relative w-auto h-32">
           <Image
             fill
             alt="advert-1"
