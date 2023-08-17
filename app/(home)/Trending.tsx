@@ -3,6 +3,8 @@ import React from 'react'
 import Image from 'next/image';
 import { Post } from '@prisma/client';
 
+export const revalidate = 100;
+
 type TrendingCardProps = {
   className?: string;
   post: Post;
