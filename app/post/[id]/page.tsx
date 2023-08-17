@@ -3,6 +3,7 @@ import { prisma } from '@/app/api/client';
 import { Post as PostType } from '@prisma/client';
 import { FormattedPost } from '@/app/types';
 import Sidebar from '@/app/(shared)/Sidebar';
+import Content from './Content';
 
 type Props = {
   params: {id: string}
@@ -36,12 +37,12 @@ const Post = async ({params}: Props) => {
   if(!post) {
     return <div>Post Not Found</div>
   }
-  
+
   return (
     <main className="leading-7 px-10">
       <div className="md:flex gap-10 mb-5">
         <div className="basis-3/4">
-          Content
+          <Content post={post}/> 
         </div>
         <div className="basis-1/4">
         <Sidebar />
