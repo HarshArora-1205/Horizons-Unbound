@@ -17,22 +17,22 @@ const Other = ({ otherPosts }: Props) => {
 
       <div className="sm:grid grid-cols-2 gap-16">
         <Card 
-          className="mt-5 sm:mt-0 bg-wh-500" 
+          className="mt-5 sm:mt-0" 
           post={otherPosts[0]}
           imageHeight='h-80'
         />
         <Card 
-          className="mt-5 sm:mt-0 bg-wh-500" 
+          className="mt-5 sm:mt-0" 
           post={otherPosts[1]}
           imageHeight='h-80'
         />
         <Card 
-          className="mt-5 sm:mt-0 bg-wh-500" 
+          className="mt-5 sm:mt-0" 
           post={otherPosts[2]}
           imageHeight='h-80'
         />
         <Card 
-          className="mt-5 sm:mt-0 bg-wh-500" 
+          className="mt-5 sm:mt-0" 
           post={otherPosts[3]}
           imageHeight='h-80'
         />
