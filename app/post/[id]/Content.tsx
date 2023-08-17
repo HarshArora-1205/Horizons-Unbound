@@ -59,9 +59,37 @@ const Content = ({post}: Props) => {
     editable: isEditable,
   })
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  }
+    // validation checks
+    if (title === "") setTitleError("This field is required.");
+    if (editor?.isEmpty) setContentError("This field is required.");
+    if (title === "" || editor?.isEmpty) return;
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL}/api/post/${post?.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          content: content,
+        }),
+      }
+    );
+    const data = await response.json();
+
+    handleIsEditable(false);
+    setTempTitle("");
+    setTempContent("");
+
+    setTitle(data.title);
+    setContent(data.content);
+    editor?.commands.setContent(data.content);
+  };
 
   return (
     <div className="prose w-full max-w-full mb-10">
@@ -93,6 +121,9 @@ const Content = ({post}: Props) => {
                 onChange={handleOnChangeTitle}
                 value={title}
               />
+              {titleError && (
+                <p className="mt-1 text-primary-500">{titleError}</p>
+              )}
             </div>
           ) : (
             <h3 className="font-bold text-3xl mt-3">{title}</h3>
