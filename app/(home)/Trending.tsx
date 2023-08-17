@@ -16,7 +16,7 @@ const TrendingCard = ({ className, post }: TrendingCardProps ) => {
       className={`${className} sm:mt-0 sm:h-auto relative mt-7 block w-full h-96 hover:opacity-70`}
       href={`${process.env.NEXT_PUBLIC_URL}/post/${post?.id}`}
     >
-      <div className="z-0 relative w-full h-full bg-wh-500">
+      <div className="z-0 relative w-full h-full">
         <Image
           fill
           alt="tech"
