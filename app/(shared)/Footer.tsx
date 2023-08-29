@@ -1,5 +1,7 @@
+// Imports
 import React from 'react';
 
+// Footer Component
 const Footer = () => {
   return (
     <footer className='bg-wh-900 text-wh-50 px-10 py-10'>

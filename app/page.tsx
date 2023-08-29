@@ -1,3 +1,4 @@
+// Imports
 import { Post } from "@prisma/client";
 import Tech from "./(home)/Tech";
 import Travel from "./(home)/Travel";
@@ -7,12 +8,19 @@ import Sidebar from "./(shared)/Sidebar";
 import Subscribe from "./(shared)/Subscribe";
 import { prisma } from "./api/client";
 
+// Function to fetch posts data from PlanetScale DB using PrismaORM
 const getPosts = async () => {
+  // Fetcjing Posts
   const posts: Array<Post> = await prisma.post.findMany();
 
+  // Use Promise.all to asynchronously process each post's image and format the posts
   const formattedPosts = await Promise.all(
+
     posts.map(async (post: Post) => {
+      // Dynamically require the image module based on the post's image path
       const imageModule = require(`../public${post.image}`);
+
+      // Replace Image url
       return {
         ...post,
         image: imageModule.default,
@@ -20,13 +28,19 @@ const getPosts = async () => {
     })
   );
 
+  // Return Formatted Post
   return formattedPosts;
 }
 
+
+// Home Page
 export default async function Home() {
+  // Fetching posts
   const posts = await getPosts();
 
+  // Function to return filtered post according to their categories
   const formatPosts = () => {
+    // Initializing Arrays
     const trendingPosts: Array<Post> = [];
     const techPosts: Array<Post> = [];
     const travelPosts: Array<Post> = [];

@@ -1,3 +1,4 @@
+// Imports
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -6,6 +7,7 @@ import Ad1 from 'public/assets/ad-1.jpg';
 
 type Props = {}
 
+// Navbar Component
 const Navbar = (props: Props) => {
   return (
     <header className='mb-5'>
@@ -37,6 +39,8 @@ const Navbar = (props: Props) => {
             alt="advert-1"
             placeholder="blur"
             src={Ad1}
+
+            // Customizing size of Image for different viewport widths
             sizes="(max-width: 480px) 100vw,
                 (max-width: 768px) 75vw,
                 (max-width: 1060px) 50vw,
@@ -50,4 +54,4 @@ const Navbar = (props: Props) => {
   )
 }
 
-export default Navbar
+export default Navbar;

@@ -1,11 +1,14 @@
+// Imports
 import React from 'react';
 import Card from '../(shared)/Card';
 import { Post } from '@prisma/client';
 
+// Defining Props Type
 type Props = {
   techPosts: Array<Post>;
 }
 
+// Tech Section
 const Tech = ({ techPosts }: Props) => {
   return (
     <section>
@@ -20,6 +23,7 @@ const Tech = ({ techPosts }: Props) => {
         </p>
       </div>
 
+      {/* Displaying Cards from techPosts Data */}
       <div className="sm:grid grid-cols-2 grid-rows-3 gap-x-8 gap-y-8 my-5">
         <Card 
           className="col-span-1 row-span-3" 

@@ -1,3 +1,4 @@
+// Defining Type for FormattedPost
 export type FormattedPost = {
   id: string;
   createdAt: string;

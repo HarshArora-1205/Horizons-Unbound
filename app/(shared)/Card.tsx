@@ -1,16 +1,21 @@
+// Imports
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import { Post } from '@prisma/client';
 
+// Props for Card
 type Props = {
   className?: string;
   post: Post;
   imageHeight: string;
+
+  // Props to check if Card is Small or Long
   isSmallCard?: boolean;
   isLongForm?: boolean;
 }
 
+// Card Component
 const Card = ({
   className,
   post,
@@ -24,6 +29,7 @@ const Card = ({
   const date = new Date(createdAt);
   const options = { year: "numeric", month: "long", day: "numeric" } as any;
 
+  // Formatting date in readable format
   const formattedDate = date.toLocaleDateString("en-US", options);
 
   return (
@@ -37,6 +43,8 @@ const Card = ({
             alt="tech"
             placeholder="blur"
             src={image}
+
+            // Customizing Image size based on viewport width
             sizes="(max-width: 480px) 100vw,
                   (max-width: 768px) 75vw,
                   (max-width: 1060px) 50vw,
@@ -66,4 +74,4 @@ const Card = ({
   )
 }
 
-export default Card
+export default Card;

@@ -1,15 +1,19 @@
-import Link from 'next/link'
-import React from 'react'
+// Imports
+import Link from 'next/link';
+import React from 'react';
 import Image from 'next/image';
 import { Post } from '@prisma/client';
 
+// Revalidate data after k seconds
 export const revalidate = 100;
 
+// Props for Card
 type TrendingCardProps = {
   className?: string;
   post: Post;
 };
 
+// Card Component for Trending Section
 const TrendingCard = ({ className, post }: TrendingCardProps ) => {
   return (
     <Link
@@ -22,6 +26,8 @@ const TrendingCard = ({ className, post }: TrendingCardProps ) => {
           alt="tech"
           placeholder="blur"
           src={post?.image}
+
+          // Customizing Image size based on viewport width
           sizes="(max-width: 480px) 100vw,
                 (max-width: 768px) 75vw,
                 (max-width: 1060px) 50vw,
@@ -42,10 +48,12 @@ const TrendingCard = ({ className, post }: TrendingCardProps ) => {
   )
 }
 
+// Defining Props Type
 type Props = {
   trendingPosts: Array<Post>;
 }
 
+// Trending Section
 const Trending = ({trendingPosts}: Props) => {
   return (
     <section className="pt-3 pb-10">
@@ -58,7 +66,7 @@ const Trending = ({trendingPosts}: Props) => {
             </p>
         </div>
 
-        {/* Grid */}
+        {/* Fetching & Displaying data from trendingPosts Array */}
         <div className="sm:grid gap-5 grid-cols-4 grid-rows-2 sm:h-[600px] my-3">
             <TrendingCard className="col-span-2 row-span-2" post={trendingPosts[0]} />
             <TrendingCard className="col-span-2 row-span-1" post={trendingPosts[1]} />
@@ -73,4 +81,4 @@ const Trending = ({trendingPosts}: Props) => {
   )
 }
 
-export default Trending
+export default Trending;

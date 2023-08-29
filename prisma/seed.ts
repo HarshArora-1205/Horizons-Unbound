@@ -1,7 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
+// Creating Prisma Client
 const prisma: any = new PrismaClient();
 
+// Seed Data
 const posts = [
   {
     category: "Tech",
@@ -215,6 +217,7 @@ const posts = [
   },
 ];
 
+// Defining Seeding Function
 const main = async () => {
   console.log(`Started seeding... 🚀`);
   for (const post of posts) {
@@ -223,6 +226,7 @@ const main = async () => {
   console.log(`Seeding finished... 🎉`);
 }
 
+// Call Seeding Function, Handle errors & disconnect DB after seeding
 main()
   .then(async () => {
     await prisma.$disconnect();

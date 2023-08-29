@@ -1,8 +1,10 @@
+// Imports
 import { Editor, EditorContent } from "@tiptap/react";
 import React, { useState } from "react";
 import EditorMenuBar from "./EditorMenuBar";
 import { RocketLaunchIcon } from "@heroicons/react/24/solid";
 
+// Define Props
 type Props = {
   contentError: string;
   editor: Editor | null;
@@ -11,6 +13,7 @@ type Props = {
   title: string;
 };
 
+// Article Component
 const Article = ({
   contentError,
   editor,
@@ -19,12 +22,14 @@ const Article = ({
   title,
 }: Props) => {
 
+  // State for setting role
   const [role, setRole] = useState<string>("I am a helpful assistant.");
   
   if (!editor) {
     return null;
   }
 
+  // Function to fetch AI generated content based on title and role
   const postAiContent = async () => {
     editor
       .chain()
@@ -40,9 +45,14 @@ const Article = ({
         role: role,
       }),
     });
+
+    // Parse response data as JSON
     const data = await response.json();
 
+    // Update the editor content
     editor.chain().focus().setContent(data.content).run();
+
+    // Update the content state
     setContent(data.content);
   };
   
@@ -71,6 +81,7 @@ const Article = ({
         {
           isEditable && (
             <>
+              {/* Render Custom Editor Menu bar */}
               <EditorMenuBar editor={editor}/>
               <hr className='border-1 mt-2 mb-5'/>
             </>

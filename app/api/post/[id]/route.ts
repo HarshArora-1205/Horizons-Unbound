@@ -1,8 +1,11 @@
+// Imports
 import { NextResponse } from "next/server";
 import { prisma } from "../../client";
 
+// Define Params Type
 type Params = {params: {id: string}};
 
+// Update DB
 export async function PATCH(request: Request, { params }: Params){
   try{
     const {id} = params;

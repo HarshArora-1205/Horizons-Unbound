@@ -1,3 +1,4 @@
+// Imports
 import React from 'react';
 import Image from 'next/image';
 import Twitter from "public/assets/social_twitter.png";
@@ -6,10 +7,13 @@ import Instagram from "public/assets/social_instagram.png";
 import Discord from "public/assets/social_discord.png";
 import Google from "public/assets/social_google.png";
 
+// Defining Props Type
 type Props = {
+	// Prop to check if Links should be Dark or not
 	isDark?: boolean;
 }
 
+// Social Links Component
 const SocialLinks = ({ isDark = false }: Props) => {
   return (
 	<div className="flex justify-between items-center gap-7">

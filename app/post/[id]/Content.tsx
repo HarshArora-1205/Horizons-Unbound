@@ -1,8 +1,10 @@
+// Tell Next to use Client Side Rendering
 "use client";
 
+// Imports
 import SocialLinks from '@/app/(shared)/SocialLinks';
 import { FormattedPost } from '@/app/types';
-import { Editor, EditorContent, useEditor } from '@tiptap/react';
+import { Editor, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -14,30 +16,40 @@ type Props = {
 }
 
 const Content = ({post}: Props) => {
+  // Define States
+
+    // -> State to check if user wishes to edit or not
   const [isEditable, setIsEditable] = useState<boolean>(false);
 
+    // -> States for storing title & errors
   const [title, setTitle] = useState<string>(post.title);
   const [titleError, setTitleError] = useState<string>("");
   const [tempTitle, setTempTitle] = useState<string>(title);
 
+    // -> States for storing content & errors
   const [content, setContent] = useState<string>(post.content);
   const [contentError, setContentError] = useState<string>("");
   const [tempContent, setTempContent] = useState<string>(content);
 
+
+  // Fetching & Formatting Date
   const date = new Date(post?.createdAt);
   const options = { year: "numeric", month: "long", day: "numeric" } as any;
   const formattedDate = date.toLocaleDateString("en-US", options);
 
+  // Function to handle editable functionality
   const handleIsEditable = (bool: boolean) => {
     setIsEditable(bool);
     editor?.setEditable(bool);
   };
 
+  // Function to Set Title on change
   const handleOnChangeTitle = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (title) setTitleError("");
     setTitle(e.target.value);
   };
 
+  // Function to Set Content on change
   const handleOnChangeContent = ({editor} : any) => {
     if(!(editor as Editor).isEmpty){
       setContentError("");
@@ -45,6 +57,7 @@ const Content = ({post}: Props) => {
     setContent((editor as Editor).getHTML());
   }
 
+  // Editor Configuration
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -59,14 +72,16 @@ const Content = ({post}: Props) => {
     editable: isEditable,
   })
 
+  // Function to handle Submit
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // validation checks
+    // Validation checks
     if (title === "") setTitleError("This field is required.");
     if (editor?.isEmpty) setContentError("This field is required.");
     if (title === "" || editor?.isEmpty) return;
 
+    // Send data to backend for updating in DB
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/post/${post?.id}`,
       {
@@ -80,6 +95,8 @@ const Content = ({post}: Props) => {
         }),
       }
     );
+
+    // Parse Respnse data as JSON
     const data = await response.json();
 
     handleIsEditable(false);
@@ -140,6 +157,8 @@ const Content = ({post}: Props) => {
             fill
             alt={post.title}
             src={post.image}
+
+            // Customizing image size for different viewport widths
             sizes="(max-width: 480px) 100vw,
                   (max-width: 768px) 85vw,
                   (max-width: 1060px) 75vw,

@@ -1,11 +1,14 @@
+// Imports
 import React from 'react';
 import Card from "app/(shared)/Card";
 import { Post } from '@prisma/client';
 
+// Defining Props Type
 type Props = {
   travelPosts: Array<Post>;
 };
 
+// Travel Section
 const Travel = ({ travelPosts }: Props) => {
   return (
     <section className="mt-10">
@@ -20,6 +23,7 @@ const Travel = ({ travelPosts }: Props) => {
         </p>
       </div>
 
+      {/* Fetching & Displaying data from travelPosts array (passed as props) */}
       <div className="sm:flex justify-between gap-8">
         <Card 
           className="basis-1/3 mt-5 sm:mt-0" 
@@ -48,4 +52,4 @@ const Travel = ({ travelPosts }: Props) => {
   )
 }
 
-export default Travel
+export default Travel;
