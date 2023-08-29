@@ -1,10 +1,13 @@
+// Imports
 import { Editor } from "@tiptap/react";
 import React from "react";
 
+// Define Props
 type Props = {
   editor: Editor | null;
 };
 
+// Editor Menu Bar Component
 const EditorMenuBar = ({ editor }: Props) => {
   if (!editor) {
     return null;

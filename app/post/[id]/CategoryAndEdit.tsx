@@ -1,8 +1,10 @@
+// Imports
 import { FormattedPost } from "@/app/types";
 import { Editor } from "@tiptap/react";
 import React from "react";
 import { XMarkIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 
+// Define Props
 type Props = {
   isEditable: boolean;
   handleIsEditable: (isEditable: boolean) => void;
@@ -16,6 +18,7 @@ type Props = {
   post: FormattedPost;
 };
 
+// Category & Edit Component
 const CategoryAndEdit = ({
   isEditable,
   handleIsEditable,
@@ -28,12 +31,15 @@ const CategoryAndEdit = ({
   editor,
   post,
 }: Props) => {
+
+  // Function to allow Edit
   const handleEnableEdit = () => {
     handleIsEditable(!isEditable);
     setTempTitle(title);
     setTempContent(editor?.getHTML() || "");
   };
 
+  // Function to cancel Edit
   const handleCancelEdit = () => {
     handleIsEditable(!isEditable);
     setTitle(tempTitle);

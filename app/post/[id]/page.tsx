@@ -1,26 +1,32 @@
-import React from 'react'
+// Imports
+import React from 'react';
 import { prisma } from '@/app/api/client';
 import { Post as PostType } from '@prisma/client';
 import { FormattedPost } from '@/app/types';
 import Sidebar from '@/app/(shared)/Sidebar';
 import Content from './Content';
 
+// Defining Props
 type Props = {
   params: {id: string}
 }
 
+// Revalidate data after k seconds
 export const revalidate = 100;
 
+// Function to fetch specific post from given id
 const getPost = async (id: string) => {
   const post: PostType | null = await prisma.post.findUnique({
     where: { id }
   });
 
+  // Handling Error
   if(!post) {
     console.log(`Post with id ${id} not found!`)
     return null;
   }
 
+  // Formatting dates
   const formattedPost = {
     ...post,
     createdAt: post?.createdAt?.toISOString(),
@@ -30,6 +36,7 @@ const getPost = async (id: string) => {
   return formattedPost;
 }
 
+// Post Page
 const Post = async ({params}: Props) => {
   const { id } = params;
   const post: FormattedPost | null =  await getPost(id);
@@ -52,4 +59,4 @@ const Post = async ({params}: Props) => {
   )
 }
 
-export default Post
+export default Post;
