@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Loader
 const Loading = () => {
   return (
     <div>Loading</div>

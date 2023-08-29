@@ -1,5 +1,7 @@
-import React from 'react'
+// Imports
+import React from 'react';
 
+// Subscribe Component
 const Subscribe = () => {
   return (
     <div className="text-center bg-wh-10 px-5 py-10">
