@@ -21,6 +21,9 @@ export async function POST(request: Request) {
         { role: "system", content: `${ role || "I am a helpful assistant" }. Write with html tags.`,},
       ],
       model: "gpt-3.5-turbo",
+      headers: {
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      }
     });
 
     // Send the generated content
